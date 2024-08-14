@@ -1,0 +1,30 @@
+import os
+
+def rename_files_in_directory(directory_path, base_name):
+    try:
+        # Liste tous les fichiers dans le répertoire donné
+        files = os.listdir(directory_path)
+        # Filtrer seulement les fichiers (ignorer les dossiers)
+        files = [f for f in files if os.path.isfile(os.path.join(directory_path, f))]
+        
+        # Renommer chaque fichier
+        for index, file_name in enumerate(files, start=1):
+            # Définir le nouveau nom du fichier avec le numéro séquentiel
+            new_name = f"{base_name}_{index}{os.path.splitext(file_name)[1]}"
+            # Chemins complets des fichiers
+            old_file = os.path.join(directory_path, file_name)
+            new_file = os.path.join(directory_path, new_name)
+            # Renommer le fichier
+            os.rename(old_file, new_file)
+        
+        print(f"Renommage terminé. {len(files)} fichiers ont été renommés.")
+    
+    except Exception as e:
+        print(f"Une erreur est survenue : {e}")
+
+if __name__ == "__main__":
+    # Demander à l'utilisateur le chemin du dossier et le nom de base
+    directory_path = input("Entrez le chemin du dossier : ")
+    base_name = input("Entrez le nom de base pour les fichiers : ")
+    
+    rename_files_in_directory(directory_path, base_name)

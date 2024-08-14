@@ -1,0 +1,4 @@
+Flask==2.3.2
+opencv-contrib-python==4.7.0.72
+Pillow==10.0.0
+numpy==1.26.0
